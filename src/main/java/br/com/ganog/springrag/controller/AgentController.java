@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AgentController {
 
     private final RagService ragService;
-    private Assistant assistant;
 
     @PostMapping("/rag")
     public String messageRag(@RequestBody MyQuestion myQuestion) {
 
+        Assistant assistant;
         try {
             assistant = ragService.configure();
         } catch (Exception e) {
