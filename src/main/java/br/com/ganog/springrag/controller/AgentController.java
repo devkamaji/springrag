@@ -18,9 +18,12 @@ public class AgentController {
     @PostMapping("/rag")
     public String messageRag(@RequestBody MyQuestion myQuestion) {
 
-        if (assistant == null) {
+        try {
             assistant = ragService.configure();
+        } catch (Exception e) {
+            throw new RuntimeException("Error configuring the assistant", e);
         }
+
         return assistant.aswer(myQuestion.question());
     }
 }
